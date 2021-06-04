@@ -1,0 +1,8 @@
+{% if name %}
+<p class="mt-2">{{message}} {{name}}:</p>
+{% else %}
+<p class="mt-2">{{message}}</p>
+{% endif %}
+<ul>
+  {% include 'includes/li.html' with results=results is_bold=is_bold %}
+</ul>

@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+
+{% block home %}
+
+<div class="row">
+  <div class="col">
+    {% for problem in problems %}
+    <div class="card mt-2" style="width: 30rem;">
+      <img class="card-img-top" src="{{problem.image.url}}" alt="{{problem.title}} cap" />
+      <div class="card-body">
+        <h5 class="card-title">{{problem.title}}</h5>
+        <p class="card-text">{{problem.description}}</p>
+        <a href="{% url 'problem:problem' problem.id %}" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock home %}

@@ -1,0 +1,55 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    {% block title %}
+        <title>Title</title>
+    {% endblock title %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    {% include 'includes/css.html' %}
+    
+    <!-- Optional CSS -->
+    {% block css %}
+    {% endblock css %}
+
+    <!-- Custom Style -->
+    {% include 'includes/style.html' %}
+
+    <!-- Optional style -->
+    {% block style %}
+    {% endblock style %}
+</head>
+
+<body>
+    <div class="container">
+        {% include 'includes/navbar.html' %}
+        {% block home %}
+        {% endblock home %}
+        {% block problem_description %}
+        {% endblock problem_description %}
+        {% block system_requirement %}
+        {% endblock system_requirement %}
+        {% block use_case_diagram %}
+        {% endblock use_case_diagram %}
+        {% block class_diagram %}
+        {% endblock class_diagram %}
+        {% block activity_diagram %}
+        {% endblock activity_diagram %}
+        {% block code %}
+        {% endblock code %}
+        {% include 'includes/footer.html' %}
+    </div>
+</body>
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+{% include 'includes/javascript.html' %}
+<!-- Optional JavaScript -->
+{% block javascript %}
+{% endblock javascript %}
+
+</html>

@@ -1,0 +1,11 @@
+{% load bold %}
+
+{% if is_bold and results %}
+    {% for result in results %}
+        <li>{{result| bold}}</li>
+    {% endfor %}
+{% elif results %}
+    {% for result in results %}
+        <li>{{result}}</li>
+    {% endfor %}
+{% endif %}
