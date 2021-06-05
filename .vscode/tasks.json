@@ -6,7 +6,7 @@
         {
             "label": "System Design Django Server",
             "type": "shell",
-            "command": "python manage.py runserver"
+            "command": "python manage.py runserver 8002"
         }
     ]
 }

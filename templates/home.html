@@ -1,4 +1,4 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
 {% block home %}
 
@@ -6,11 +6,11 @@
   <div class="col">
     {% for problem in problems %}
     <div class="card mt-2" style="width: 30rem;">
-      <img class="card-img-top" src="{{problem.image.url}}" alt="{{problem.title}} cap" />
+      <img class="card-img-top" src="{{problem.image.url}}" alt="{{problem.name}} cap" />
       <div class="card-body">
-        <h5 class="card-title">{{problem.title}}</h5>
+        <h5 class="card-title">{{problem.name}}</h5>
         <p class="card-text">{{problem.description}}</p>
-        <a href="{% url 'problem:problem' problem.id %}" class="btn btn-primary">Go somewhere</a>
+        <a href="{% url 'problem:problem' problem.id %}" class="btn btn-primary">{{problem.name}}</a>
       </div>
     </div>
     {% endfor %}

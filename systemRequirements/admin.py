@@ -1,4 +1,12 @@
 from django.contrib import admin
 from .models import SystemRequirement
 # Register your models here.
-admin.site.register(SystemRequirement)
+
+
+
+@admin.register(SystemRequirement)
+class SystemRequirementAdmin(admin.ModelAdmin):
+    class Meta:
+        model = SystemRequirement
+    list_display =('requirement',)
+    list_display_links = ('requirement',)

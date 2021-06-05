@@ -3,67 +3,68 @@
 {% load bold %}
 
 {% block problem_description %}
-    <h2 class="mt-3">{{problem.name}}</h2>
-    <p class="mt-2" style="font-size: larger; font-weight: 500;">Let's make an object-oriented design for a {{problem.name}}</p>
-    <p class="ml-3 p-2" style="font-weight: 400;">{{problem.description}}</p>
-    <div class="d-flex justify-content-center p-3">
-        <img src="{{problem.image.url}}"class="img-fluid" alt="{{problem.name}} image">
-    </div>
-    <span class="d-flex justify-content-center">{{problem.name}}</span>
+<h2 class="mt-3">{{problem.name}}</h2>
+<p class="mt-2" style="font-size: larger; font-weight: 500;">Let's make an object-oriented design for a {{problem.name}}
+</p>
+<p class="ml-3 p-2" style="font-weight: 400;">{{problem.description}}</p>
+<div class="d-flex justify-content-center p-3">
+    <img src="{{problem.image.url}}" class="img-fluid" alt="{{problem.name}} image">
+</div>
+<span class="d-flex justify-content-center">{{problem.name}}</span>
 {% endblock problem_description %}
 
 {% block system_requirement %}
-    {% include "includes/common.html" with section="System Requirements" name=problem.name results=requirements %}
+{% include "includes/common.html" with section="System Requirements" name=problem.name results=requirements %}
 {% endblock system_requirement %}
 
 {% block use_case_diagram %}
-    {% include "includes/common.html" with section="Use case diagram" name=problem.name results1=actors results2=usecases image=use_case_diagram.image.url %}
+{% include "includes/common.html" with section="Use case diagram" name=problem.name results1=actors results2=usecases image=use_case_diagram.image.url %}
 {% endblock use_case_diagram %}
 
 {% block class_diagram %}
-    {% include "includes/common.html" with section="Class diagram" name=problem.name results1=actors results2=usecases results3=classes image=class_diagram.image.url uml=class_diagram.uml.url %}
-
+{% include "includes/common.html" with section="Class diagram" name=problem.name results1=actors results2=usecases results3=classes image=class_diagram.image.url uml=class_diagram.uml.url %}
 {% endblock class_diagram %}
 
 {% block activity_diagram %}
-    {% include "includes/common.html" with section="Activity diagram" results4=activity_diagrams %}
+{% include "includes/common.html" with section="Activity diagram" results4=activity_diagrams %}
 {% endblock activity_diagram %}
 
 {% block code %}
-        <div class=" mt-2" style="color:black; background-color:#e2f4c7; border-radius:5px; padding:5px; font-size: 25px;">
-            <strong>Code</strong>
+<div class=" mt-2" style="color:black; background-color:#e2f4c7; border-radius:5px; padding:5px; font-size: 25px;">
+    <strong>Code</strong>
+</div>
+<p class="mt-3">Following is the skeleton code for our {{problem.name}}:</p>
+{% for code in codes %}
+<p class="mt-4">{{code.name | bold}}</p>
+<ul class="nav nav-tabs" id="myTab">
+    <li style="margin-left: 0%;"><a class="nav-link active" href="#java{{forloop.counter}}"><img
+                src="https://img.icons8.com/nolan/40/java-coffee-cup-logo.png" style="float: left;"><span
+                style="font-size: 20px; margin-left: 5px;">Java</span></a></li>
+    <li style="margin-right: 74%;"><a class="nav-link" href="#python{{forloop.counter}}"><img
+                src="https://img.icons8.com/color/40/000000/python.png" style="float: left;"><span
+                style="font-size: 20px;  margin-left: 5px;">Python</span></a></li>
+</ul>
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="java{{forloop.counter}}">
+        <div class="border border-info">
+            <pre id="{{forloop.counter}}" class="ml-3 mt-1">{{code.java}}</pre>
         </div>
-        <p class="mt-3">Following is the skeleton code for our {{problem.name}}:</p>
-        {% for code in codes %}
-            <p class="mt-4">{{code.name | bold}}</p>
-                <ul class="nav nav-tabs" id="myTab">
-                    <li style="margin-left: 0%;"><a class="nav-link active" href="#java{{forloop.counter}}"><img src="https://img.icons8.com/nolan/40/java-coffee-cup-logo.png" style="float: left;"><span style="font-size: 20px; margin-left: 5px;">Java</span></a></li>
-                    <li style="margin-right: 74%;"><a class="nav-link" href="#python{{forloop.counter}}"><img src="https://img.icons8.com/color/40/000000/python.png" style="float: left;"><span style="font-size: 20px;  margin-left: 5px;">Python</span></a></li>
-                </ul>
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="java{{forloop.counter}}">
-                        <div class="border border-info">
-                            <pre id="{{forloop.counter}}" class="ml-3 mt-1">{{code.java}}</pre>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="python{{forloop.counter}}">
-                        <div class="border border-info">
-                            <pre id = "{{forloop.counter}}" class="ml-3 mt-1">{{code.python}}</pre>
-                        </div>
-                    </div>
-                </div>
-        {% endfor %}
+    </div>
+    <div class="tab-pane fade" id="python{{forloop.counter}}">
+        <div class="border border-info">
+            <pre id="{{forloop.counter}}" class="ml-3 mt-1">{{code.python}}</pre>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock code %}
 
 {% block javascript %}
 <script>
-    $(document).ready(function(){
-        $(".nav-tabs a").click(function(){
-        $(this).tab('show');
-  });
-});
+    $(document).ready(function () {
+        $(".nav-tabs a").click(function () {
+            $(this).tab('show');
+        });
+    });
 </script>
-<script>
-
-<script>
 {% endblock javascript %}
