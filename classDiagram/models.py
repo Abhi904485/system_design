@@ -9,16 +9,10 @@ from django.core.exceptions import ValidationError
 class ClassDiagram(models.Model):
     """Model definition for ClassDiagram."""
 
-    def validate_uml(self):
-        if self.name.endswith(".svg") or self.name.endswith('.png'):
-            pass
-        else:
-            raise ValidationError("File is not supported")
-
     problem = models.ForeignKey(to=Problem, to_field='id', verbose_name="problem", related_name='ClassDiagrams',
                                 related_query_name='ClassDiagram', on_delete=models.CASCADE, db_column='problem')
     image = SVGAndImageField(name='image', verbose_name='image', upload_to='classDiagram')
-    uml = SVGAndImageField(name='uml', verbose_name='uml', upload_to='uml', validators=[validate_uml])
+    uml = SVGAndImageField(name='uml', verbose_name='uml', upload_to='uml')
 
     class Meta:
         """Meta definition for ClassDiagram."""

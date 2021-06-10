@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'classDiagram',
     'activityDiagram',
     'codes',
+    'django_extensions',
+    'sequenceDiagram',
 ]
 
 MIDDLEWARE = [

@@ -11,5 +11,5 @@ def validate_image_and_svg_file_extension(value):
     return FileExtensionValidator(allowed_extensions=allowed_extensions)(value)
 
 
-class SVGAndImageField(models.ImageField):
+class SVGAndImageField(models.FileField):
     default_validators = [validate_image_and_svg_file_extension]

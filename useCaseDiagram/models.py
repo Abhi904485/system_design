@@ -8,6 +8,7 @@ from problem.models import Problem
 
 class UseCaseDiagram(models.Model):
     """Model definition for UseCaseDiagram."""
+
     problem = models.ForeignKey(to=Problem, to_field='id', verbose_name="problem", related_name='UseCaseDiagrams',
                                 related_query_name='UseCaseDiagram', on_delete=models.CASCADE, db_column='problem')
     image = SVGAndImageField(name='image', verbose_name='image', upload_to='usecases')

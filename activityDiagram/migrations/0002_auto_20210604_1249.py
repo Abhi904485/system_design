@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='activitydiagram',
             name='image',
-            field=models.FileField(upload_to='activityDiagram', validators=[activityDiagram.models.ActivityDiagram.validate_image], verbose_name='image'),
+            field=models.FileField(upload_to='activityDiagram', verbose_name='image'),
         ),
     ]

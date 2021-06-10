@@ -8,5 +8,5 @@ from .models import ActivityDiagram
 @admin.register(ActivityDiagram)
 class Admin(admin.ModelAdmin):
     fields = ('problem', 'activity', 'image')
-    list_display = ('activity', 'custom_image_field')
-    list_display_links = ('activity', 'custom_image_field')
+    list_display = ('problem','activity', 'custom_image_field')
+    list_display_links = ('problem','activity', 'custom_image_field')

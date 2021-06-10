@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='classdiagram',
             name='uml',
-            field=models.FileField(upload_to='uml', validators=[classDiagram.models.ClassDiagram.validate_uml], verbose_name='uml'),
+            field=models.FileField(upload_to='uml', verbose_name='uml'),
         ),
     ]

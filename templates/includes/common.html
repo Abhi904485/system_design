@@ -1,10 +1,7 @@
 {% load bold %}
-<div class="mt-2" style="color:black; background-color:#e2f4c7; border-radius:5px; padding:5px; font-size: 25px;">
-    <strong>{{section}}</strong>
-</div>
-<p class="mt-2">We will focus on the following set of requirements while designing the {{name}}:</p>
 {% with results as requirements %}
     {% if requirements %}
+    <p class="mt-2">We will focus on the following set of requirements while designing the {{name}}:</p>
         <ol>
             {% include 'includes/li.html' with results=requirements %}
         </ol>
@@ -38,6 +35,20 @@
             </div>
         {% endfor %}
     {% endif %}
+{% endwith %}
+
+{% with results5 as sequence_diagrams %}
+  {% if sequence_diagrams %}
+        <ol>
+            {% for sequence_diagram in sequence_diagrams %}
+                <li><p class="mt-4">{{sequence_diagram.description | bold}}</p></li>    
+                <div class="d-flex justify-content-center p-3">
+                    <img src="{{sequence_diagram.image.url}}" class="img-fluid" alt="">
+                </div>
+            {% endfor %}
+        </ol>
+    {% endif %}
+
 {% endwith %}
 
 {% if image %}

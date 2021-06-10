@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Problem
-from systemRequirements.models import SystemRequirement
-from useCaseDiagram.models import UseCaseDiagram, UseCases, Actors
-from classDiagram.models import Class, ClassDiagram
+from useCaseDiagram.models import UseCaseDiagram
+from classDiagram.models import ClassDiagram
 from activityDiagram.models import ActivityDiagram
+from sequenceDiagram.models import SequenceDiagram
 from codes.models import Codes
 # Create your views here.
 
@@ -17,6 +17,7 @@ def problems(request, problem_id):
     class_diagram = get_object_or_404(ClassDiagram, problem=problem)
     classes = [class_.name for class_ in class_diagram.Classes.all()]
     activity_diagrams = get_list_or_404(ActivityDiagram, problem=problem)
+    sequence_diagrams = SequenceDiagram.objects.filter(problem=problem).all()
     codes = get_list_or_404(Codes, problem=problem)
     context = {
         'problem': problem,
@@ -27,6 +28,7 @@ def problems(request, problem_id):
         'class_diagram': class_diagram,
         'classes': classes,
         'activity_diagrams': activity_diagrams,
+        'sequence_diagrams': sequence_diagrams,
         'codes': codes
     }
     return render(request, 'problem.html', context=context)

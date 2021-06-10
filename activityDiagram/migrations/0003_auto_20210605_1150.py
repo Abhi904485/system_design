@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='activitydiagram',
             name='image',
-            field=SystemDesign.utility.SVGAndImageField(upload_to='activityDiagram', validators=[activityDiagram.models.ActivityDiagram.validate_image], verbose_name='image'),
+            field=SystemDesign.utility.SVGAndImageField(upload_to='activityDiagram', verbose_name='image'),
         ),
     ]
