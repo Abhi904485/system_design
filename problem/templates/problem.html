@@ -21,6 +21,15 @@
     {% include "includes/common.html" with name=problem.name results=requirements %}
 {% endblock system_requirement %}
 
+{% block how_it_works %}
+    
+    {% if atm %}
+        {% include 'includes/section.html' with section="How It Works" %}
+        {% include "includes/atm.html"%}
+    {% endif %}
+        
+{% endblock how_it_works %}
+
 {% block use_case_diagram %}
     {% include 'includes/section.html' with section="Use case diagram" %}
     {% include "includes/common.html" with  name=problem.name results1=actors results2=usecases image=use_case_diagram.image.url %}
@@ -45,38 +54,22 @@
 
 {% block code %}
     {% include 'includes/section.html' with section="Code" %}
-    <p class="mt-3">Following is the skeleton code for our {{problem.name}}:</p>
-    {% for code in codes %}
-        <p class="mt-4">{{code.name | bold}}</p>
-        <ul class="nav nav-tabs" id="myTab">
-            <li style="margin-left: 0%;"><a class="nav-link active" href="#java{{forloop.counter}}"><img
-                        src="https://img.icons8.com/nolan/40/java-coffee-cup-logo.png" style="float: left;"><span
-                        style="font-size: 20px; margin-left: 5px;">Java</span></a></li>
-            <li style="margin-right: 74%;"><a class="nav-link" href="#python{{forloop.counter}}"><img
-                        src="https://img.icons8.com/color/40/000000/python.png" style="float: left;"><span
-                        style="font-size: 20px;  margin-left: 5px;">Python</span></a></li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="java{{forloop.counter}}">
-                <div class="border border-info">
-                    <pre id="{{forloop.counter}}" class="ml-3 mt-1">{{code.java}}</pre>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="python{{forloop.counter}}">
-                <div class="border border-info">
-                    <pre id="{{forloop.counter}}" class="ml-3 mt-1">{{code.python}}</pre>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+    {% include "includes/code.html" with name=problem.name  results6=codes %}
 {% endblock code %}
 
+{% block concurrency %}
+    {% if concurrency %}
+        {% include 'includes/section.html' with section="Concurrency" %}
+        {% include "includes/concurrency.html" with name=problem.name %}
+    {% endif %}
+{% endblock concurrency %}
+
 {% block javascript %}
-<script>
-    $(document).ready(function () {
-        $(".nav-tabs a").click(function () {
-            $(this).tab('show');
+    <script>
+        $(document).ready(function () {
+            $(".nav-tabs a").click(function () {
+                $(this).tab('show');
+            });
         });
-    });
-</script>
+    </script>
 {% endblock javascript %}

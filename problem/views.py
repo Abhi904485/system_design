@@ -12,7 +12,7 @@ def problems(request, problem_id):
     problem = get_object_or_404(Problem, id=problem_id)
     requirements = [requirement.requirement for requirement in problem.SystemRequirements.all()]
     use_case_diagram = get_object_or_404(UseCaseDiagram, problem=problem)
-    actors = [actor.actor for actor in use_case_diagram.actors.all()]
+    actors = [actor for actor in use_case_diagram.actors.all()]
     usecases = [usecase.use_case for usecase in use_case_diagram.usecases.all()]
     class_diagram = get_object_or_404(ClassDiagram, problem=problem)
     classes = [class_.name for class_ in class_diagram.Classes.all()]
@@ -31,4 +31,8 @@ def problems(request, problem_id):
         'sequence_diagrams': sequence_diagrams,
         'codes': codes
     }
+    if problem.name == 'Design a Movie Ticket Booking System':
+        context.update({'concurrency': True})
+    if problem.name == 'Design an ATM':
+        context.update({'atm': True})
     return render(request, 'problem.html', context=context)

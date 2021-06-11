@@ -28,12 +28,14 @@
 
 {% with results4 as activity_diagrams %}
     {% if activity_diagrams %}
+        <ol>
         {% for activity_diagram in activity_diagrams %}
-            <p class="mt-4">{{activity_diagram.activity | bold}}</p>
+            <li><p class="mt-4">{{activity_diagram.activity | bold}}</p></li>
             <div class="d-flex justify-content-center p-3">
                 <img src="{{activity_diagram.image.url}}" class="img-fluid" alt="">
             </div>
         {% endfor %}
+        </ol>
     {% endif %}
 {% endwith %}
 
@@ -48,8 +50,17 @@
             {% endfor %}
         </ol>
     {% endif %}
-
 {% endwith %}
+
+{% with results7 as concurrency %}
+
+    {% if  concurrency %}
+    <pre style="background-color: #1e1e1e; border-radius: 0px;">
+        {{concurrency.description}}
+    </pre>
+    {% endif %}
+{% endwith %}
+
 
 {% if image %}
         {% include 'includes/image.html' with image=image %}

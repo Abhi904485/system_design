@@ -1,0 +1,28 @@
+{% load bold %}
+
+{% with results6 as codes %}
+    <p class="mt-3">Following is the skeleton code for our {{problem.name}}:</p>
+    {% for code in codes %}
+        <p class="mt-4">{{code.name | bold}}</p>
+        <ul class="nav nav-tabs" id="myTab">
+            <li style="margin-left: 0%;"><a class="nav-link active" href="#java{{forloop.counter}}"><img
+                        src="https://img.icons8.com/nolan/40/java-coffee-cup-logo.png" style="float: left;"><span
+                        style="font-size: 20px; margin-left: 5px;">Java</span></a></li>
+            <li style="margin-right: 74%;"><a class="nav-link" href="#python{{forloop.counter}}"><img
+                        src="https://img.icons8.com/color/40/000000/python.png" style="float: left;"><span
+                        style="font-size: 20px;  margin-left: 5px;">Python</span></a></li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="java{{forloop.counter}}">
+                <div class="border border-info">
+                    <pre id="{{forloop.counter}}" class="ml-3 mt-1">{{code.java}}</pre>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="python{{forloop.counter}}">
+                <div class="border border-info">
+                    <pre id="{{forloop.counter}}" class="ml-3 mt-1">{{code.python}}</pre>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endwith %}

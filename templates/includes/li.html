@@ -2,10 +2,28 @@
 
 {% if is_bold and results %}
     {% for result in results %}
-        <li>{{result| bold}}</li>
+        {% if result.actorSubtasks.all.count > 0 %}
+            <li>{{result.actor| bold}}</li>
+            {% include 'includes/ol_with_li.html' with actor_subtasks=result.actorSubtasks.all %}
+        {% else %}
+            {% if result.actor %}
+                <li>{{result.actor| bold}}</li>
+                {% else %}
+                <li>{{result| bold}}</li>
+            {% endif %}
+        {% endif %}
     {% endfor %}
 {% elif results %}
     {% for result in results %}
-        <li>{{result}}</li>
+        {% if result.actorSubtasks.all.count > 0 %}
+            <li>{{result.actor}}</li>
+            {% include 'includes/ol_with_li.html' with actor_subtasks=result.actorSubtasks.all %}
+        {% else %}
+            {% if result.actor %}
+                <li>{{result.actor}}</li>
+                {% else %}
+                <li>{{result}}</li>
+            {% endif %}
+        {% endif %}
     {% endfor %}
 {% endif %}
