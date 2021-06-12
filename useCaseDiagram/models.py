@@ -60,7 +60,7 @@ class ActorSubtask(models.Model):
 
     actor = models.ForeignKey(to=Actors, to_field='id', verbose_name="actor", related_name="actorSubtasks",
                               related_query_name="actorSubtask", on_delete=models.CASCADE, db_column='actor')
-    task = models.TextField(name="task", verbose_name="task", max_length=5000, db_column="task")
+    value = models.TextField(name="value", verbose_name="value", max_length=5000, db_column="value")
 
     class Meta:
         """Meta definition for ActorSubtask."""
@@ -71,7 +71,7 @@ class ActorSubtask(models.Model):
 
     def __str__(self):
         """Unicode representation of ActorSubtask."""
-        return str(self.task)
+        return str(self.value)
 
 
 class UseCases(models.Model):
@@ -94,4 +94,24 @@ class UseCases(models.Model):
 
     def __str__(self):
         """Unicode representation of UseCases."""
-        return self.use_case + " Use Case    "
+        return self.use_case + " Use Case"
+
+class SubUsecase(models.Model):
+    """Model definition for SubUsecase."""
+    
+    usecase = models.ForeignKey(to=UseCases, to_field='id', verbose_name="usecase", related_name="subUseCases",
+                                       related_query_name="subUseCase", on_delete=models.CASCADE, db_column='usecase')
+    value = models.TextField(name="value", verbose_name="value", max_length=5000, db_column="value")
+
+
+    class Meta:
+        """Meta definition for SubUsecase."""
+
+        verbose_name = 'SubUsecase'
+        verbose_name_plural = 'SubUsecases'
+        db_table = 'sub_usecase'
+
+    def __str__(self):
+        """Unicode representation of SubUsecase."""
+        return str(self.value)
+

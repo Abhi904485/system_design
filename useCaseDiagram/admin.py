@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Actors, UseCaseDiagram, UseCases , ActorSubtask
+from .models import Actors, UseCaseDiagram, UseCases , ActorSubtask , SubUsecase
 # Register your models here.
 
 
@@ -25,10 +25,14 @@ class UseCasesAdmin(admin.ModelAdmin):
     list_display_links = ("usecasediagram","custom_usecase",)
 
 
-
-
-
 @admin.register(ActorSubtask)
 class ActorSubtaskAdmin(admin.ModelAdmin):
-    list_display = ("actor", "task",)
-    list_display_links = ("actor", "task",)
+    list_display = ("actor", "value",)
+    list_display_links = ("actor", "value",)
+
+
+@admin.register(SubUsecase)
+class SubUsecaseAdmin(admin.ModelAdmin):
+    list_display = ("usecase", "value",)
+    list_display_links = ("usecase", "value",)
+    

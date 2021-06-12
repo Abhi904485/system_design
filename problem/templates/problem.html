@@ -18,7 +18,13 @@
 
 {% block system_requirement %}
     {% include 'includes/section.html' with section="System Requirements" %}
-    {% include "includes/common.html" with name=problem.name results=requirements %}
+    
+    {% if jack %}
+        <p class="mt-2">We will focus on the following set of requirements while designing the {{problem.name}}:</p>
+        {% include "includes/blackjack_requirements.html"%}
+    {% else %}
+        {% include "includes/common.html" with name=problem.name results=requirements %}
+    {% endif %}
 {% endblock system_requirement %}
 
 {% block how_it_works %}

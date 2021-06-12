@@ -4,11 +4,16 @@
     {% for result in results %}
         {% if result.actorSubtasks.all.count > 0 %}
             <li>{{result.actor| bold}}</li>
-            {% include 'includes/ol_with_li.html' with actor_subtasks=result.actorSubtasks.all %}
+            {% include 'includes/ol_with_li.html' with results=result.actorSubtasks.all %}
+        {% elif result.subUseCases.all.count > 0 %}
+            <li>{{result.use_case| bold}}</li>
+            {% include 'includes/ol_with_li.html' with results=result.subUseCases.all %}
         {% else %}
             {% if result.actor %}
                 <li>{{result.actor| bold}}</li>
-                {% else %}
+            {% elif result.use_case %}
+                <li>{{result.use_case| bold}}</li>
+            {% else %}
                 <li>{{result| bold}}</li>
             {% endif %}
         {% endif %}
@@ -17,11 +22,16 @@
     {% for result in results %}
         {% if result.actorSubtasks.all.count > 0 %}
             <li>{{result.actor}}</li>
-            {% include 'includes/ol_with_li.html' with actor_subtasks=result.actorSubtasks.all %}
+            {% include 'includes/ol_with_li.html' with results=result.actorSubtasks.all %}
+        {% elif result.subUseCases.all.count > 0 %}
+            <li>{{result.actor}}</li>
+            {% include 'includes/ol_with_li.html' with results=result.subUseCases.all %}
         {% else %}
             {% if result.actor %}
                 <li>{{result.actor}}</li>
-                {% else %}
+            {% elif result.use_case %}
+                <li>{{result.use_case}}</li>
+            {% else %}
                 <li>{{result}}</li>
             {% endif %}
         {% endif %}
