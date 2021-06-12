@@ -1,0 +1,70 @@
+{% load bold %}
+
+<p class="mt-3">Here is the code for finding connection suggestions for a member.</p>
+
+<p>There can be many strategies to search for connection suggestions; we will do a two-level deep breadth-first search to find people who have the most connections with each other. These people could be good candidates for a connection suggestion, here is the sample Java code:</p>
+
+<div class="border border-info">
+    <pre class="ml-3 mt-1">
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import static java.util.Collections.reverseOrder;
+
+public class Member extends Person {
+  private Integer memberId;
+  private Date dateOfMembership;
+  private String name;
+
+  private Profile profile;
+  private HashSet<Integer> memberFollows;
+  private HashSet<Integer> memberConnections;
+  private HashSet<Integer> pageFollows;
+  private HashSet<Integer> memberSuggestions;
+  private HashSet<ConnectionInvitation> connectionInvitations;
+  private HashSet<Integer> groupFollows;
+
+  public boolean sendMessage(Message message);
+  public boolean createPost(Post post);
+  public boolean sendConnectionInvitation(ConnectionInvitation invitation);
+
+  private Map<Integer, Integer> searchMemberSuggestions() {
+    Map<Integer, Integer> suggestions = new HashMap<>();
+    for(Integer memberId : this.memberConnections) {
+      HashSet<Integer> firstLevelConnections = new Member(memberId).getMemberConnections());
+      for(Integer firstLevelConnectionId : firstLevelConnections) {
+        this.findMemberSuggestion(suggestions, firstLevelConnectionId);
+        HashSet<Integer> secondLevelConnections = new Member(firstLevelConnectionId).getMemberConnections());
+        for(Integer secondLevelConnectionId : secondLevelConnections) {
+          this.findMemberSuggestion(suggestions, secondLevelConnectionId);
+        }
+      }
+	  }
+
+    // sort by value (increasing count), i.e., by highest number of mutual connection count
+    Map<Integer, Integer> result = new LinkedHashMap<>();
+    suggestions.entrySet().stream()
+        .sorted(reverseOrder(Map.Entry.comparingByValue()))
+        .forEachOrdered(x -> result.put(x.getKey(), x.getValue()));
+
+    return result;
+  }
+
+  private void findMemberSuggestion(Map<Integer, Integer> suggestions, Integer connectionId) {
+    // return if the proposed suggestion is already a connection or if there is a
+    // pending connection invitation
+    if(this.memberConnections.contains(connectionId) ||
+        this.connectionInvitations.contains(connectionId)) {
+      return;
+    }
+
+    int count = suggestions.containsKey(connectionId) ? suggestions.get(connectionId) : 0;
+    suggestions.put(connectionId, count + 1);
+  }
+}
+    </pre>
+</div>
+    
+
+

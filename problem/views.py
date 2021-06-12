@@ -15,7 +15,7 @@ def problems(request, problem_id):
     actors = [actor for actor in use_case_diagram.actors.all()]
     usecases = [usecase for usecase in use_case_diagram.usecases.all()]
     class_diagram = get_object_or_404(ClassDiagram, problem=problem)
-    classes = [class_.name for class_ in class_diagram.Classes.all()]
+    classes = [class_ for class_ in class_diagram.Classes.all()]
     activity_diagrams = get_list_or_404(ActivityDiagram, problem=problem)
     sequence_diagrams = SequenceDiagram.objects.filter(problem=problem).all()
     codes = get_list_or_404(Codes, problem=problem)
@@ -37,4 +37,6 @@ def problems(request, problem_id):
         context.update({'atm': True})
     if problem.name == 'Design Blackjack and a Deck of Cards':
         context.update({'jack': True})
+    if problem.name == 'Design Facebook - a social network':
+        context.update({'facebook': True})
     return render(request, 'problem.html', context=context)

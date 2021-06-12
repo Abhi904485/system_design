@@ -55,3 +55,22 @@ class Class(models.Model):
     def __str__(self):
         """Unicode representation of Classes."""
         return str(self.name)
+
+class Subclass(models.Model):
+    """Model definition for Subclass."""
+    
+    class_subclass = models.ForeignKey(to=Class, to_field='id', verbose_name="class", related_name='subClasses',
+                                      related_query_name='subClass', on_delete=models.CASCADE, db_column='class')
+    value = models.TextField(name="value", verbose_name="value", max_length=5000, db_column="value")
+
+
+    class Meta:
+        """Meta definition for Subclass."""
+
+        verbose_name = 'Subclass'
+        verbose_name_plural = 'Subclasses'
+        db_table = 'subclass'
+
+    def __str__(self):
+        """Unicode representation of Subclass."""
+        return str(self.value)

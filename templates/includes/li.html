@@ -8,11 +8,16 @@
         {% elif result.subUseCases.all.count > 0 %}
             <li>{{result.use_case| bold}}</li>
             {% include 'includes/ol_with_li.html' with results=result.subUseCases.all %}
+        {% elif result.subClasses.all.count > 0 %}
+            <li>{{result.name| bold}}</li>
+            {% include 'includes/ol_with_li.html' with results=result.subClasses.all %}
         {% else %}
             {% if result.actor %}
                 <li>{{result.actor| bold}}</li>
             {% elif result.use_case %}
                 <li>{{result.use_case| bold}}</li>
+            {% elif result.name %}
+                <li>{{result.name| bold}}</li>
             {% else %}
                 <li>{{result| bold}}</li>
             {% endif %}
@@ -26,11 +31,16 @@
         {% elif result.subUseCases.all.count > 0 %}
             <li>{{result.actor}}</li>
             {% include 'includes/ol_with_li.html' with results=result.subUseCases.all %}
+        {% elif result.subClasses.all.count > 0 %}
+            <li>{{result.name}}</li>
+            {% include 'includes/ol_with_li.html' with results=result.subClasses.all %}
         {% else %}
             {% if result.actor %}
                 <li>{{result.actor}}</li>
             {% elif result.use_case %}
                 <li>{{result.use_case}}</li>
+            {% elif result.name %}
+                <li>{{result.name}}</li>
             {% else %}
                 <li>{{result}}</li>
             {% endif %}

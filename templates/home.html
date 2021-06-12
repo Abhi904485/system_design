@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-<title>System Design</title>
+<title>Object Oriented Design</title>
 {% endblock title %}
 
 {% block home %}
@@ -10,7 +10,7 @@
   {% for problem in problems %}
   <div class="col-6">
     <div class="card mt-2 mb-2">
-      <a href="{% url 'problem:problem' problem.id %}"><img class="card-img-top" src="{{problem.image.url}}" width="300px" height="300px" alt="{{problem.name}} cap"/></a>
+      <a href="{% url 'problem:problem' problem.id %}"><img class="card-img-top" src="{{problem.image.url}}" width="300px" height="200px" alt="{{problem.name}} cap"/></a>
       <div class="card-body">
         <h5 class="card-title"><a href="{% url 'problem:problem' problem.id %}" style="text-decoration:none">{{problem.name}}</a></h5>
         <p class="card-text">{{problem.description | truncatechars_html:100}}</p>
@@ -20,4 +20,5 @@
   </div>
   {% endfor %}
 </div>
+{% include 'includes/pagination.html' with problems=problems %}
 {% endblock home %}

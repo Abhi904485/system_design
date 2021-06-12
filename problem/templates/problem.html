@@ -25,6 +25,11 @@
     {% else %}
         {% include "includes/common.html" with name=problem.name results=requirements %}
     {% endif %}
+    
+    {% if facebook %}
+        <p class="mt-2"><strong>Extended Requirement: </strong>Write a function to find a connection suggestion for a member.</p>
+    {% endif %}
+        
 {% endblock system_requirement %}
 
 {% block how_it_works %}
@@ -69,6 +74,13 @@
         {% include "includes/concurrency.html" with name=problem.name %}
     {% endif %}
 {% endblock concurrency %}
+
+{% block extended %}
+    {% if facebook %}
+        {% include 'includes/section.html' with section="Extended Requirement" %}
+        {% include "includes/facebook_extended.html"%}
+    {% endif %}
+{% endblock extended %}
 
 {% block javascript %}
     <script>

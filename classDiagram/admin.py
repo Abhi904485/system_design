@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ClassDiagram , Class
+from .models import ClassDiagram, Class, Subclass
 # Register your models here.
 
 @admin.register(ClassDiagram)
@@ -18,3 +18,12 @@ class ClassAdmin(admin.ModelAdmin):
         fields = '__all__'
     list_display = ('class_diagram','name',)
     list_display_links = ('class_diagram','name',)
+
+
+@admin.register(Subclass)
+class SubclassAdmin(admin.ModelAdmin):
+    class Meta:
+        model = Subclass
+        fields = '__all__'
+    list_display = ('class_subclass','value',)
+    list_display_links = ('class_subclass','value',)
