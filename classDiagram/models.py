@@ -1,8 +1,10 @@
-from django.utils.safestring import mark_safe
-from SystemDesign.utility import SVGAndImageField
 from django.db import models
+from django.utils.safestring import mark_safe
+
+from SystemDesign.utility import SVGAndImageField
 from problem.models import Problem
-from django.core.exceptions import ValidationError
+
+
 # Create your models here.
 
 
@@ -23,13 +25,13 @@ class ClassDiagram(models.Model):
 
     def custom_image_field(self):
         return mark_safe('<img src="{}" width=50 height=50/>'.format(self.image.url))
-    
+
     custom_image_field.short_description = 'Image'
     custom_image_field.allow_tags = True
 
     def custom_uml_field(self):
         return mark_safe('<img src="{}" width=50 height=50/>'.format(self.uml.url))
-    
+
     custom_uml_field.short_description = 'UML'
     custom_uml_field.allow_tags = True
 
@@ -41,7 +43,8 @@ class ClassDiagram(models.Model):
 class Class(models.Model):
     """Model definition for Classes."""
 
-    class_diagram = models.ForeignKey(to=ClassDiagram, to_field='id', verbose_name="class Diagram", related_name='Classes',
+    class_diagram = models.ForeignKey(to=ClassDiagram, to_field='id', verbose_name="class Diagram",
+                                      related_name='Classes',
                                       related_query_name='Class', on_delete=models.CASCADE, db_column='Class')
     name = models.TextField(name='name', verbose_name='name', max_length=5000, db_column='name')
 
@@ -56,13 +59,13 @@ class Class(models.Model):
         """Unicode representation of Classes."""
         return str(self.name)
 
+
 class Subclass(models.Model):
     """Model definition for Subclass."""
-    
-    class_subclass = models.ForeignKey(to=Class, to_field='id', verbose_name="class", related_name='subClasses',
-                                      related_query_name='subClass', on_delete=models.CASCADE, db_column='class')
-    value = models.TextField(name="value", verbose_name="value", max_length=5000, db_column="value")
 
+    class_subclass = models.ForeignKey(to=Class, to_field='id', verbose_name="class", related_name='subClasses',
+                                       related_query_name='subClass', on_delete=models.CASCADE, db_column='class')
+    value = models.TextField(name="value", verbose_name="value", max_length=5000, db_column="value")
 
     class Meta:
         """Meta definition for Subclass."""

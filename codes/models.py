@@ -1,6 +1,8 @@
 from django.db import models
 from django.template.defaultfilters import truncatechars
 from problem.models import Problem
+
+
 # Create your models here.
 
 
@@ -16,16 +18,15 @@ class Codes(models.Model):
         verbose_name_plural = "Codes"
         db_table = 'codes'
 
-
     def custom_java(self):
         return truncatechars(self.java, 150)
-    
+
     custom_java.short_description = "Java"
-    
+
     def custom_python(self):
         return truncatechars(self.python, 150)
-    
+
     custom_python.short_description = "Python"
-    
+
     def __str__(self):
         return str(self.name)

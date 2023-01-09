@@ -3,42 +3,44 @@
 {% load bold %}
 
 {% block title %}
-<title>System Design | {{problem.name}}</title>
+    <title>System Design | {{ problem.name }}</title>
 {% endblock title %}
 {% block problem_description %}
-    <h2 class="mt-3">{{problem.name}}</h2>
-    <p class="mt-2" style="font-size: larger; font-weight: 500;">Let's make an object-oriented design for a {{problem.name}}
+    <h2 class="mt-3">{{ problem.name }}</h2>
+    <p class="mt-2" style="font-size: larger; font-weight: 500;">Let's make an object-oriented design for
+        a {{ problem.name }}
     </p>
-    <p class="ml-3 p-2" style="font-weight: 400;">{{problem.description}}</p>
+    <p class="ml-3 p-2" style="font-weight: 400;">{{ problem.description }}</p>
     <div class="d-flex justify-content-center p-3">
-        <img src="{{problem.image.url}}" class="img-fluid" alt="{{problem.name}} image">
+        <img src="{{ problem.image.url }}" class="img-fluid" alt="{{ problem.name }} image">
     </div>
-    <span class="d-flex justify-content-center">{{problem.name}}</span>
+    <span class="d-flex justify-content-center">{{ problem.name }}</span>
 {% endblock problem_description %}
 
 {% block system_requirement %}
     {% include 'includes/section.html' with section="System Requirements" %}
-    
+
     {% if jack %}
-        <p class="mt-2">We will focus on the following set of requirements while designing the {{problem.name}}:</p>
-        {% include "includes/blackjack_requirements.html"%}
+        <p class="mt-2">We will focus on the following set of requirements while designing the {{ problem.name }}:</p>
+        {% include "includes/blackjack_requirements.html" %}
     {% else %}
         {% include "includes/common.html" with name=problem.name results=requirements %}
     {% endif %}
-    
+
     {% if facebook %}
-        <p class="mt-2"><strong>Extended Requirement: </strong>Write a function to find a connection suggestion for a member.</p>
+        <p class="mt-2"><strong>Extended Requirement: </strong>Write a function to find a connection suggestion for a
+            member.</p>
     {% endif %}
-        
+
 {% endblock system_requirement %}
 
 {% block how_it_works %}
-    
+
     {% if atm %}
         {% include 'includes/section.html' with section="How It Works" %}
-        {% include "includes/atm.html"%}
+        {% include "includes/atm.html" %}
     {% endif %}
-        
+
 {% endblock how_it_works %}
 
 {% block use_case_diagram %}
@@ -78,7 +80,7 @@
 {% block extended %}
     {% if facebook %}
         {% include 'includes/section.html' with section="Extended Requirement" %}
-        {% include "includes/facebook_extended.html"%}
+        {% include "includes/facebook_extended.html" %}
     {% endif %}
 {% endblock extended %}
 

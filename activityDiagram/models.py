@@ -2,7 +2,6 @@ from SystemDesign.utility import SVGAndImageField
 from django.utils.safestring import mark_safe
 from django.db import models
 from problem.models import Problem
-from django.core.exceptions import ValidationError
 # Create your models here.
 
 

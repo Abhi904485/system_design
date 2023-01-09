@@ -24,14 +24,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
     path('problems/', include('problem.urls', namespace='problem')),
-    path('oob/', TemplateView.as_view(template_name="includes/oo_basic.html"),name='oob'),
-    path('ooa/', TemplateView.as_view(template_name="includes/ooa_design.html"),name='ooa'),
-    path('uml/', TemplateView.as_view(template_name="includes/uml.html"),name='uml'),
-    path('use_case/', TemplateView.as_view(template_name="includes/use_case.html"),name='usecase'),
-    path('class/', TemplateView.as_view(template_name="includes/class_diagram.html"),name='class'),
-    path('sequence/', TemplateView.as_view(template_name="includes/sequence_diagram.html"),name='sequence'),
-    path('activity/', TemplateView.as_view(template_name="includes/activity_diagram.html"),name='activity'),
-    
+    path('oob/', TemplateView.as_view(template_name="includes/oo_basic.html"), name='oob'),
+    path('ooa/', TemplateView.as_view(template_name="includes/ooa_design.html"), name='ooa'),
+    path('uml/', TemplateView.as_view(template_name="includes/uml.html"), name='uml'),
+    path('use_case/', TemplateView.as_view(template_name="includes/use_case.html"), name='usecase'),
+    path('class/', TemplateView.as_view(template_name="includes/class_diagram.html"), name='class'),
+    path('sequence/', TemplateView.as_view(template_name="includes/sequence_diagram.html"), name='sequence'),
+    path('activity/', TemplateView.as_view(template_name="includes/activity_diagram.html"), name='activity'),
+
 ]
 
 if settings.DEBUG:

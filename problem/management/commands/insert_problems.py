@@ -1,6 +1,6 @@
-from activityDiagram import models
 from django.core.management.base import BaseCommand
 from problem.models import Problem
+
 
 class Command(BaseCommand):
     help = "Insert Problems"
@@ -13,4 +13,3 @@ class Command(BaseCommand):
         name = options['name']
         description = options['description']
         Problem.objects.create(name=name, description=description)
-        
